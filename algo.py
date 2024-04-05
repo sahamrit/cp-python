@@ -158,3 +158,29 @@ class SegmentTree:
         return self.query(2 * idx, l, min(r, mid), tl, mid) + self.query(
             2 * idx + 1, max(l, mid + 1), r, mid + 1, tr
         )
+
+class Trie:
+    def __init__(self) -> None:
+        self.tree = [None for i in range(ord('z') - ord('a') + 1)]
+        self.count = [0 for i in range(ord('z') - ord('a') + 1)]
+    
+    def insert(self, word):
+        char = word[0]
+        idx = ord(char) - ord('a')
+        if len(word) == 1:
+            self.count[idx] += 1
+            self.tree[idx] = Trie()
+        else:
+            if self.tree[idx] is None:
+                self.tree[idx] = Trie()
+            self.tree[idx].insert(word[1:])
+    
+    def search(self, word):
+        char = word[0]
+        idx = ord(char) - ord('a')
+        if self.tree[idx] is None:
+            return 0
+        if len(word) == 1:
+            return self.count[idx]
+        return self.tree[idx].search(word[1:])
+        

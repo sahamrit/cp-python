@@ -123,6 +123,27 @@ class Algorithms(unittest.TestCase):
         self.assertEqual(arr[2] + arr[3] + arr[4], seg.query(1, 2, 4, 0, len(arr) - 1))
         self.assertEqual(arr[5] + arr[3] + arr[4], seg.query(1, 3, 5, 0, len(arr) - 1))
 
+    def test_trie(self):
+        trie = Trie()
+        trie.insert("apple")
+        trie.insert("appy")
+        trie.insert("appy")
+
+        self.assertEqual(0, trie.search("amrit"))
+        self.assertEqual(2, trie.search("appy"))
+
+        trie.insert("appy")
+        self.assertEqual(3, trie.search("appy"))
+
+        trie.insert("ball")
+        self.assertEqual(1, trie.search("ball"))
+
+        trie.insert("ballet")
+        self.assertEqual(1, trie.search("ball"))
+        self.assertEqual(1, trie.search("ballet"))
+
+        trie.insert("ball")
+        self.assertEqual(2, trie.search("ball"))
 
 if __name__ == "__main__":
     unittest.main()
