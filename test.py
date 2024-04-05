@@ -95,6 +95,16 @@ class Algorithms(unittest.TestCase):
         self.assertEqual(0, dsu.find(4))
         self.assertEqual(0, dsu.find(5))
 
+    def test_bin_tree(self):
+        tree = BinTree(5)
+        tree.insert(10)
+        tree.insert(100)
+        tree.insert(0)
+        tree.insert(-10)
+        tree.insert(90)
+
+        self.assertEqual([-10, 0, 5, 10, 90, 100], tree.inorder())
+
 
 if __name__ == "__main__":
     unittest.main()
