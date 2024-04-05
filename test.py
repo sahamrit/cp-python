@@ -105,6 +105,15 @@ class Algorithms(unittest.TestCase):
 
         self.assertEqual([-10, 0, 5, 10, 90, 100], tree.inorder())
 
+        tree = BinTree(45)
+        tree.insert(19)
+        tree.insert(10)
+        tree.insert(65)
+        tree.insert(-170)
+        tree.insert(-200)
+
+        self.assertEqual([-200, -170, 10, 19, 45, 65], tree.inorder())
+
 
 if __name__ == "__main__":
     unittest.main()

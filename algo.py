@@ -94,11 +94,6 @@ class BinTree:
                 if curr.left is None:
                     ans.insert(0, curr.val)
                     stack.pop(0)
-                    if curr.right is not None:
-                        curr = curr.right
-                    else:
-                        x = stack.pop(0)
-                        ans.insert(0, x.val)
-                        curr = x.right
+                    curr = curr.right
         ans.reverse()
         return ans
