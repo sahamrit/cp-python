@@ -97,3 +97,27 @@ class BinTree:
                     curr = curr.right
         ans.reverse()
         return ans
+
+    def postorder(self) -> List[int]:
+        curr = self
+        ans = []
+        stack = []
+        while curr or len(stack):
+            if curr is None:
+                x = stack.pop(0)
+                if x[1] == 0:
+                    stack.insert(0, (x[0], 1))
+                    curr = x[0].right
+                else:
+                    ans.insert(0, x[0].val)
+            else:
+                stack.insert(0, (curr, 0))
+                if curr.left is not None:
+                    curr = curr.left
+                    continue
+                if curr.left is None:
+                    x = stack.pop(0)
+                    stack.insert(0, (x[0], 1))
+                    curr = curr.right
+        ans.reverse()
+        return ans

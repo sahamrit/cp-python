@@ -104,6 +104,7 @@ class Algorithms(unittest.TestCase):
         tree.insert(90)
 
         self.assertEqual([-10, 0, 5, 10, 90, 100], tree.inorder())
+        self.assertEqual([-10, 0, 90, 100, 10, 5], tree.postorder())
 
         tree = BinTree(45)
         tree.insert(19)
@@ -113,6 +114,7 @@ class Algorithms(unittest.TestCase):
         tree.insert(-200)
 
         self.assertEqual([-200, -170, 10, 19, 45, 65], tree.inorder())
+        self.assertEqual([-200, -170, 10, 19, 65, 45], tree.postorder())
 
 
 if __name__ == "__main__":
