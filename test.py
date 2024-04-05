@@ -114,8 +114,14 @@ class Algorithms(unittest.TestCase):
         tree.insert(-200)
 
         self.assertEqual([-200, -170, 10, 19, 45, 65], tree.inorder())
-        self.assertEqual([-200, -170, 10, 19, 65, 45], tree.postorder())
+        self.assertEqual([-200, -170, 10, 19, 65, 45], tree.postorder())    
 
+    def test_seg_tree(self):
+        arr = [-3, -4, 5, 5, 9, 0, 11, 12]
+        seg = SegmentTree(arr)
+        seg.build()
+        self.assertEqual(arr[2] + arr[3] + arr[4], seg.query(1, 2, 4, 0, len(arr) -1 ))
+        self.assertEqual(arr[5] + arr[3] + arr[4], seg.query(1, 3, 5, 0, len(arr) - 1))
 
 if __name__ == "__main__":
     unittest.main()
