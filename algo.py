@@ -81,30 +81,24 @@ class BinTree:
         curr = self
         ans = []
         stack = []
-        stack.insert(0, curr)
-        while len(stack):
+        while curr or len(stack):
             if curr is None:
                 x = stack.pop(0)
                 ans.insert(0, x.val)
                 curr = x.right
-                if curr:
-                    stack.insert(0, curr)
             else:
+                stack.insert(0, curr)
                 if curr.left is not None:
                     curr = curr.left
-                    stack.insert(0, curr)
                     continue
                 if curr.left is None:
                     ans.insert(0, curr.val)
                     stack.pop(0)
                     if curr.right is not None:
                         curr = curr.right
-                        stack.insert(0, curr)
                     else:
                         x = stack.pop(0)
                         ans.insert(0, x.val)
                         curr = x.right
-                        if curr:
-                            stack.insert(0, curr)
         ans.reverse()
         return ans
