@@ -1,5 +1,6 @@
 from typing import *
 
+
 def bin_search(arr: List[int], size: int) -> int:
     low = 0
     high = size - 1
@@ -11,6 +12,7 @@ def bin_search(arr: List[int], size: int) -> int:
             low = mid + 1
 
     return high
+
 
 def bfs(adj: List[List[int]], root: int) -> List[int]:
     queue: List[int] = [root]
@@ -27,6 +29,7 @@ def bfs(adj: List[List[int]], root: int) -> List[int]:
 
     answer.reverse()
     return answer
+
 
 class DSU:
     def __init__(self) -> None:
@@ -56,7 +59,6 @@ class DSU:
 
 
 class BinTree:
-
     def __init__(self, val) -> None:
         self.val = val
         self.left = None
@@ -75,7 +77,8 @@ class BinTree:
                     curr.right = BinTree(num)
                     break
                 curr = curr.right
-            else: break
+            else:
+                break
 
     def inorder(self) -> List[int]:
         curr = self
@@ -122,12 +125,12 @@ class BinTree:
         ans.reverse()
         return ans
 
+
 class SegmentTree:
     def __init__(self, arr) -> None:
         self.size = len(arr)
         self.t = [0 for _ in range(4 * self.size)]
         self.arr = arr
-
 
     def build_tree(self, idx, low, high):
         if low == high:
@@ -135,8 +138,8 @@ class SegmentTree:
             return
         mid = (low + high) // 2
 
-        self.build_tree(2* idx, low, mid)
-        self.build_tree(2 *idx + 1, mid + 1, high)
+        self.build_tree(2 * idx, low, mid)
+        self.build_tree(2 * idx + 1, mid + 1, high)
 
         self.t[idx] = self.t[2 * idx] + self.t[2 * idx + 1]
 
@@ -146,11 +149,12 @@ class SegmentTree:
     def query(self, idx, l, r, tl, tr):
         if l > r:
             return 0
-        
+
         if (l == tl) and (r == tr):
             return self.t[idx]
 
         mid = (tl + tr) // 2
 
-        return self.query(2 * idx, l, min(r, mid), tl, mid) + self.query(2 * idx + 1, max(l, mid + 1), r, mid + 1, tr)
-
+        return self.query(2 * idx, l, min(r, mid), tl, mid) + self.query(
+            2 * idx + 1, max(l, mid + 1), r, mid + 1, tr
+        )
