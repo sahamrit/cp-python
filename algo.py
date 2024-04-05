@@ -27,3 +27,30 @@ def bfs(adj: List[List[int]], root: int) -> List[int]:
 
     answer.reverse()
     return answer
+
+class DSU:
+    def __init__(self) -> None:
+        self.parent: List[List[int]] = [i for i in range(10)]
+        self.size: List[int] = [1 for i in range(10)]
+    
+    def find(self, idx: int) -> int:
+        if idx != self.parent[idx]:
+            # binary lifting
+            self.parent[idx] = self.find(self.parent[idx])
+        return self.parent[idx]
+    
+    def merge(self, a: int, b: int):
+        root_a = self.find(a)
+        root_b = self.find(b)
+
+        if root_a != root_b:
+            if self.size[root_a] >= self.size[root_b]:
+                self.parent[root_b] = root_a
+                self.size[root_a] += self.size[root_b]
+            else:
+                self.parent[root_a] = root_b
+                self.size[root_b] += self.size[root_a]                
+                    
+    def same_set(self, a: int, b: int):
+        return self.find(a) == self.find(b)
+
